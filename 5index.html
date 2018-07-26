@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="5style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button class="bgColorBtn" id="green">Green</button>
+    <button class="bgColorBtn" id="red">Red</button>
+    <button class="bgColorBtn" id="blue">Blue</button>
+    <button class="bgColorBtn" id="yellow">Yellow</button>
+    <button class="bgColorBtn" id="brown">Brown</button>
+
+    <button class="bgColorBtn" id="killLS">Kill LocStor</button>
+
+    <button class="bgColorBtn" id="like">WatchLike</button>
+
+
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand anima " href="#">ТудаСюда</a>
+    </nav>
+    <main>
+        <div class="search-form-container py-3">
+            <div class="container">
+                <div class="row">
+                    <form name="search_form" class="col align-self-center">
+                        <div class="form-group marginTop">
+                            <label for="title">Search</label>
+                            <input type="text" name="nameTitle" placeholder="Enter title" id="title">
+
+                            <span class="error-message">This field is required</span>
+                            <button class="btn btn-primary" id="search">Search
+                                <i class="fas fa-address-book"></i>
+                            </button>
+                            <div class="radio">
+                                <p>
+                                    <input type="radio" name="radioNameCircle" value="movie">movie</p>
+                                <p>
+                                    <input type="radio" name="radioNameCircle" value="series">series</p>
+                                <p>
+                                    <input type="radio" name="radioNameCircle" value="episode">episode</p>
+                                <p>
+                                    <input type="radio" name="radioNameCircle" checked value="all">all</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="printBlock"></div>
+
+                <div id="search-watch" class="cards">
+
+
+                    <!-- <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="https://m.media-amazon.com/images/M/MV5BMTg0NTM3MTI1MF5BMl5BanBnXkFtZTgwMTAzNTAzNzE@._V1_SX300.jpg"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <span class="badge badge-warning">Warning</span>
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                             <i class="fas fa-heart " ></i>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src='5js.js'></script>
+</body>
+
+</html>

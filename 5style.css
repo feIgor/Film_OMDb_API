@@ -1,0 +1,111 @@
+
+.error {
+    border-color: red;
+    animation: animateBorder 1s linear infinite;
+} 
+
+.form-group {
+    position: relative;
+}
+
+.error-message {
+    position: absolute;
+    display: none;
+    color: red;
+    font-size: 12px;
+    bottom: -12px;
+}
+
+@keyframes animateBorder {
+    from {
+        border-color: red; 
+    }
+
+    to {
+        border-color: blue;
+    }
+}
+
+@keyframes anima {
+    from {
+        
+        left: 410px;
+    }
+
+    to {
+        
+        left: 555px;
+    }
+}
+
+
+.anima {
+    border-color: rgba(79, 80, 73, 0.712);
+    animation: anima 3s ease-in-out infinite;
+    animation-direction: alternate;
+    font-weight: 800;
+    font-size: 50px !important;
+    position: relative;
+        
+} 
+
+
+.bgColorBtn{
+    margin: 10px auto;
+}
+
+
+
+
+body{
+    background-color:rgba(116, 30, 124, 0.2) 
+    /* !important */
+    ;
+}
+
+.container{
+    background-color:rgba(0,0,0,0.2);
+}
+
+.visible {
+    display: block !important;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+margin: 5px;
+min-width: 360px !important;
+}
+
+.radio{
+    display: flex;
+    justify-content: flex-start;
+}
+
+ p{
+       margin: 5px;
+}
+
+.marginTop{
+    margin-top: 20px;
+}
+
+
+
+.fa-heart{
+    display: inline-block;
+    font-size: 50px;
+    position: relative;
+    right: -111px;
+    transition: 1s;
+}
+
+.fa-heart:hover{
+   transform: rotateY(180deg);
+   color: red;
+}
