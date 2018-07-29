@@ -9,6 +9,8 @@ let radioName;
 let value;
 let like = [];
 
+let globalArr = [];
+
 if (localStorage.getItem('bgColor') !== null) {
     let bgColor = localStorage.getItem('bgColor');
     document.getElementsByTagName('body')[0].style.background = bgColor;
@@ -26,7 +28,10 @@ whoClick.forEach(function (element) {
 
         if (element.id == 'like') {
 
-            let list = like.map((elem) =>
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            globalArr = like.slice();
+
+            let list = like.map((elem, i) =>
                 `
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="${elem.Poster}" alt="Card image cap">
@@ -36,7 +41,7 @@ whoClick.forEach(function (element) {
                 <p class="card-text"> Year ${elem.Year}</p>
                 <a href="https://www.imdb.com/title/${elem.imdbID}" class="btn btn-primary">IMDB PLEASE</a>
 
-                <i class="fas fa-heart" ></i> 
+                <i data-index="${i}" data-imdbid="${elem.imdbID}"  class="fas fa-heart redHeart" ></i> 
 
             </div>
         </div>
@@ -44,6 +49,28 @@ whoClick.forEach(function (element) {
             ).join('');
 
             idCards.innerHTML = `${list}`; // выводим кино добавленное в избранное
+
+
+            for (let Jindex = 0; Jindex < globalArr.length; Jindex++) {
+
+                for (let index = 0; index < like.length; index++) {
+
+                    //console.log(like[index].imdbID);
+
+                    if (like[index].imdbID == globalArr[Jindex].imdbID) {
+
+                        document.querySelectorAll('.fas.fa-heart')[Jindex].classList.add('redHeart');
+
+                    }
+                }
+
+            }
+
+
+
+            console.log('вывел из локалСторедж');
+
+
 
         }
 
@@ -87,6 +114,10 @@ function setVisibility(element, isError) {
 
 function generateResultCards(data) {
 
+    globalArr = data.Search.slice();
+
+
+
     let list = data.Search.filter(elem => (radioName == 'all' || radioName == elem.Type)).map((elem, i) =>
         `
         <div class="card" style="width: 18rem;">
@@ -97,7 +128,7 @@ function generateResultCards(data) {
                 <p class="card-text"> Year ${elem.Year}</p>
                 <a href="https://www.imdb.com/title/${elem.imdbID}" class="btn btn-primary">IMDB PLEASE</a>
 
-                <i data-index="${i}" class="fas fa-heart" ></i> 
+                <i data-index="${i}" data-imdbid="${elem.imdbID}" class="fas fa-heart" ></i> 
 
             </div>
         </div>
@@ -107,22 +138,75 @@ function generateResultCards(data) {
     let searchLS = JSON.stringify(data.Search.filter(elem => (radioName == 'all' || radioName == elem.Type)));
     localStorage.setItem(value + radioName, searchLS);
 
+    // тут надо понять - есть ли НА ВЫДАЧУ лайкнутые
+
+
+
+
+    ////////////////////
+
     idCards.innerHTML = `${list}`;
+    //console.dir(globalArr);
 
+    for (let Jindex = 0; Jindex < globalArr.length; Jindex++) {
 
+        for (let index = 0; index < like.length; index++) {
 
-    document.querySelector('.cards').addEventListener('click', function (elem) { 
-        
-        // почему при первом поиске в карточке клик СЕРДЕЧКУ вызывает одну сработку, при втором поиске 2 сработки, при третем 3 сработки и результат лайка по сердцу НОМЕР 8, 
-        // пушит в лайкМассив 8-ой НОМЕР из 1 2 и 3 поиска... WTF... замыкания замкнули замок? 
+            //console.log(like[index].imdbID);
 
-        if (elem.target.tagName == 'I') {
+            if (like[index].imdbID == globalArr[Jindex].imdbID) {
 
-            console.log(data.Search[elem.target.getAttribute('data-index')]);
+                document.querySelectorAll('.fas.fa-heart')[Jindex].classList.add('redHeart');
 
-            like.push(data.Search[elem.target.getAttribute('data-index')]);
-            //console.log(like);
+            }
         }
-    }, true);
 
+    }
+
+    console.log('сделал поиск');
+
+    ///////////////
 }
+
+
+document.querySelector('.cards').addEventListener('click', elem => {
+
+    if (elem.target.tagName == 'I') {
+
+
+        if (document.querySelectorAll('.fas.fa-heart')[elem.target.getAttribute('data-index')].classList.item(2)) {
+
+            document.querySelectorAll('.fas.fa-heart')[elem.target.getAttribute('data-index')].classList.remove('redHeart');
+            // тут жаxнуть функцию сравнения не добавлен ли
+
+            //like.splice(globalArr[elem.target.getAttribute('data-index')],1);
+
+            //console.log(globalArr[elem.target.getAttribute('data-index')].imdbID);
+
+            for (let index = 0; index < like.length; index++) {
+
+                //console.log(like[index].imdbID);
+
+                if (like[index].imdbID == globalArr[elem.target.getAttribute('data-index')].imdbID) {
+                    console.dir(like[index].imdbID + ' = ' + globalArr[elem.target.getAttribute('data-index')].imdbID);
+                    like.splice(index, 1);
+                }
+            }
+
+            // console.log('**********************');
+
+
+        } else {
+            document.querySelectorAll('.fas.fa-heart')[elem.target.getAttribute('data-index')].classList.add('redHeart');
+            like.push(globalArr[elem.target.getAttribute('data-index')]);
+        }
+
+
+
+        //console.log(document.querySelectorAll('.fas.fa-heart.redHeart')[elem.target.getAttribute('data-index')]);
+
+        //console.log(like);
+
+
+    }
+}, true);

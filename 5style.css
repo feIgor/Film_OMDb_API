@@ -105,7 +105,11 @@ min-width: 360px !important;
     transition: 1s;
 }
 
-.fa-heart:hover{
+/* .fa-heart:hover{
    transform: rotateY(180deg);
    color: red;
+} */
+
+.redHeart{
+    color: red;
 }
